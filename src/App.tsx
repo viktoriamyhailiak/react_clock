@@ -25,15 +25,6 @@ export class App extends React.Component<{}, State> {
 
   private timerIdTime?: number;
 
-  private handleContextMenu = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  private handleClick = () => {
-    this.setState({ hasClock: true });
-  };
-
   timeHandler = () => {
     const now = new Date(Date.now());
 
@@ -45,6 +36,15 @@ export class App extends React.Component<{}, State> {
     }
   };
 
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
   timerId = () => {
     this.setState({ clockName: getRandomName() });
   };
@@ -54,7 +54,6 @@ export class App extends React.Component<{}, State> {
     this.timerIdTime = window.setInterval(this.timeHandler, 1000);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
-
     document.addEventListener('click', this.handleClick);
   }
 
